@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "Farnborugh Guide",
-    "description": "Demo chat app with crazy react-navigation, Apollo+Graph.cool, a smidge of Redux for no real reason, and login/signup/profile. github.com/allpwrfulroot/yaba-social",
-    "slug": "yaba-social",
+    "name": "Farnborough Guide",
+    "description": "Guide to Farnborough, Hampshire",
+    "slug": "farnborough-guide",
     "privacy": "public",
     "sdkVersion": "21.0.0",
     "version": "0.0.1",
