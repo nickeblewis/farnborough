@@ -27,9 +27,17 @@ import ChatsPage from './screens/ChatsPage'
 import Chat from './screens/Chat'
 import Profile from './screens/Profile'
 import EventsPage from './screens/EventsPage'
+import PlacesPage from './screens/PlacesPage'
+import ActivitiesPage from './screens/ActivitiesPage'
 import EventDetails from './screens/EventDetails'
+import ActivityDetails from './screens/ActivityDetails'
+import PlaceDetails from './screens/PlaceDetails'
 import EventMessages from './screens/EventMessages'
+import ActivityMessages from './screens/ActivityMessages'
+import PlaceMessages from './screens/PlaceMessages'
 import EventOther from './screens/EventOther'
+import ActivityOther from './screens/ActivityOther'
+import PlaceOther from './screens/PlaceOther'
 import EventsFilter from './screens/EventsFilter'
 import Tbd from './screens/Tbd'
 import FirstTab from './screens/FirstTab'
@@ -39,7 +47,7 @@ import MyProfile from './screens/MyProfile'
 
 const defaultTabs = {
   labelStyle: {
-    fontFamily: 'nemoy-medium',
+    fontFamily: 'opensans-medium',
     fontSize: 16
   },
   indicatorStyle: {
@@ -47,7 +55,7 @@ const defaultTabs = {
     borderWidth: 2,
   },
   style: {
-    backgroundColor: 'black'
+    backgroundColor: '#7DBA00'
   },
   tabStyle: {
     padding: 0,
@@ -56,13 +64,13 @@ const defaultTabs = {
 
 const defaultHeader = {
   headerStyle: {
-    backgroundColor: 'black',
+    backgroundColor: '#7DBA00',
     shadowOpacity: 0,
     elevation: 0,
   },
   headerTitleStyle: {
     alignSelf: 'flex-start',
-    fontFamily: 'nemoy-medium',
+    fontFamily: 'opensans-medium',
     fontSize: 20,
     marginLeft: Platform.OS === 'ios' ? -10 : 10
   },
@@ -101,16 +109,28 @@ const EventsWithFilterStack = StackNavigator({
 })
 
 const HomeTabs = TabNavigator({
-  ChatsTab: {
-    screen: ChatsPage,
-    navigationOptions: {
-      tabBarLabel: 'Chats',
-    }
-  },
+  // ChatsTab: {
+  //   screen: ChatsPage,
+  //   navigationOptions: {
+  //     tabBarLabel: 'Chats',
+  //   }
+  // },
   EventsTab: {
     screen: EventsWithFilterStack,
     navigationOptions: {
       tabBarLabel: 'Events'
+    }
+  },
+  PlacesTab: {
+    screen: PlacesPage,
+    navigationOptions: {
+      tabBarLabel: 'Places'
+    }
+  },
+  ActivitiesTab: {
+    screen: ActivitiesPage,
+    navigationOptions: {
+      tabBarLabel: 'Activities'
     }
   },
 },
@@ -150,11 +170,67 @@ const EventTabs = TabNavigator({
   }
 })
 
+const ActivityTabs = TabNavigator({
+  ActivityDetails: {
+    screen: ActivityDetails,
+    navigationOptions: {
+      tabBarLabel: 'Details'
+    }
+  },
+  ActivityMessages: {
+    screen: ActivityMessages,
+    navigationOptions: {
+      tabBarLabel: 'Messages'
+    }
+  },
+  ActivityOther: {
+    screen: ActivityOther,
+    navigationOptions: {
+      tabBarLabel: 'Other'
+    }
+  }
+},
+{
+  tabBarComponent: TabBarTop,
+  tabBarPosition: 'top',
+  tabBarOptions: {
+    ...defaultTabs
+  }
+})
+
+const PlaceTabs = TabNavigator({
+  PlaceDetails: {
+    screen: PlaceDetails,
+    navigationOptions: {
+      tabBarLabel: 'Details'
+    }
+  },
+  PlaceMessages: {
+    screen: PlaceMessages,
+    navigationOptions: {
+      tabBarLabel: 'Events'
+    }
+  },
+  PlaceOther: {
+    screen: PlaceOther,
+    navigationOptions: {
+      tabBarLabel: 'Activities'
+    }
+  }
+},
+{
+  tabBarComponent: TabBarTop,
+  tabBarPosition: 'top',
+  tabBarOptions: {
+    ...defaultTabs
+  }
+})
+
 const HomeStackSummary = StackNavigator({
   SummaryStack: {
     screen: HomeTabs,
     navigationOptions: ({ navigation }) => ({
-      title: 'YABA',
+      title: 'Farnborough Guide',
       headerLeft: (
         <TouchableOpacity onPress={() => navigation.navigate('DrawerOpen')} >
           <Ionicons name='md-menu' size={28} color={'white'} style={{paddingLeft: 12}}/>
@@ -177,7 +253,19 @@ const HomeStackSummary = StackNavigator({
   EventTabs: {
     screen: EventTabs,
     navigationOptions: ({ navigation }) => ({
-      title: `${navigation.state.params.event.title}`
+      title: `${navigation.state.params.event.name}`
+    })
+  },
+  PlaceTabs: {
+    screen: PlaceTabs,
+    navigationOptions: ({ navigation }) => ({
+      title: `${navigation.state.params.place.title}`
+    })
+  },
+  ActivityTabs: {
+    screen: ActivityTabs,
+    navigationOptions: ({ navigation }) => ({
+      title: `${navigation.state.params.activity.title}`
     })
   }
 },{
@@ -318,11 +406,11 @@ const DrawerNavigation = DrawerNavigator({
     <View style={styles.drawer}>
       <View style={{flex: 1}}>
         <View style={styles.header}>
-          <Image style={styles.logo} resizeMode='contain' source={require('./assets/icons/yaba_logo.png')} />
+          <Image style={styles.logo} resizeMode='contain' source={require('./assets/icons/logo.png')} />
         </View>
 
         <ScrollView>
-          <TouchableOpacity
+          {/* <TouchableOpacity
              onPress={() => (navigation.state.index === 0 && navigation.state.routes[0].routes[0].index === 0) ?
                navigation.navigate('DrawerClose') : navigation.dispatch(
                  NavigationActions.navigate({
@@ -333,10 +421,10 @@ const DrawerNavigation = DrawerNavigator({
                ) }
               style={[styles.drawerItem, (navigation.state.index === 0 && navigation.state.routes[0].routes[0].index === 0) ? {backgroundColor: 'black'} : null]}>
             <Text style={styles.drawerText}>Chats</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
 
           <TouchableOpacity
-            onPress={() => (navigation.state.index === 0 && navigation.state.routes[0].routes[0].index === 1) ?
+            onPress={() => (navigation.state.index === 0 && navigation.state.routes[0].routes[0].index === 0) ?
               navigation.navigate('DrawerClose') : navigation.dispatch(
                 NavigationActions.navigate({
                   routeName: 'Home',
@@ -344,8 +432,21 @@ const DrawerNavigation = DrawerNavigator({
                   action: NavigationActions.navigate({ routeName: 'EventsTab' })
                 })
               ) }
-            style={[styles.drawerItem, (navigation.state.index === 0 && navigation.state.routes[0].routes[0].index === 1) ? {backgroundColor: 'black'} : null]}>
+            style={[styles.drawerItem, (navigation.state.index === 1 && navigation.state.routes[0].routes[0].index === 1) ? {backgroundColor: 'black'} : null]}>
             <Text style={styles.drawerText}>Events</Text>
+          </TouchableOpacity>
+          
+          <TouchableOpacity
+            onPress={() => (navigation.state.index === 2 && navigation.state.routes[0].routes[0].index === 2) ?
+              navigation.navigate('DrawerClose') : navigation.dispatch(
+                NavigationActions.navigate({
+                  routeName: 'Home',
+                  params: {},
+                  action: NavigationActions.navigate({ routeName: 'PlacesTab' })
+                })
+              ) }
+            style={[styles.drawerItem, (navigation.state.index === 0 && navigation.state.routes[0].routes[0].index === 0) ? {backgroundColor: 'black'} : null]}>
+            <Text style={styles.drawerText}>Places</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -418,7 +519,7 @@ const styles = StyleSheet.create({
   drawer: {
     flex: 1,
     justifyContent: 'space-between',
-    backgroundColor: 'darkgray',
+    backgroundColor: '#5B8800',
   },
   drawerItem: {
     flexDirection: 'row',
@@ -431,13 +532,13 @@ const styles = StyleSheet.create({
   drawerText: {
     color: '#fff',
     fontSize: 18,
-    // fontFamily: 'nemoy-medium',
+    // fontFamily: 'opensans-medium',
     padding: 14
   },
   header: {
     paddingTop: 20,
     paddingBottom: 5,
-    backgroundColor: 'black',
+    backgroundColor: '#5B8800',
     justifyContent: 'center',
     shadowColor: '#21292b',
     shadowOffset: { width: -2, height: 2 },

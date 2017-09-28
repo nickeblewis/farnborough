@@ -45,10 +45,10 @@ export default class Login extends React.Component {
       )
     } else {
       return (
-        <View style={{flex: 1, backgroundColor: 'black', padding: 12}}>
+        <View style={{flex: 1, backgroundColor: '#7DBA00', padding: 12}}>
           <View style={{flex: 1, justifyContent: 'flex-start', alignItems: 'center', padding: 25}}>
-            <Image source={require('../assets/icons/yaba_logo.png')} style={{width: 150, height: 150}}/>
-            <Text style={styles.header}>YABA</Text>
+            <Image source={require('../assets/icons/logo.png')} style={{width: 150, height: 150}}/>
+            <Text style={styles.header}>Farnborough Guide</Text>
           </View>
           <KeyboardAvoidingView
             style={{flex: 1, justifyContent: 'flex-end'}}
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 28,
     marginVertical: 12,
-    fontFamily: 'nemoy-light',
+    fontFamily: 'opensans-light',
     color: 'white'
   },
   input: {
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'white',
     textAlign: 'center',
-    fontFamily: 'nemoy-medium',
+    fontFamily: 'opensans-medium',
     fontSize: 18
   },
   option: {

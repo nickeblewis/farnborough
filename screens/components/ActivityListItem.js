@@ -11,21 +11,20 @@ import {
 } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
 
-export default function EventListItem({ event, goToEvent }) {
-  console.log('ELI', event)
+export default function ActivityListItem({ activity, goToActivity }) {
   return (
     <TouchableOpacity
       style={styles.card}
-      onPress={() => goToEvent(event)}>
+      onPress={() => goToActivity(activity)}>
       <FontAwesome
-        name={event.icon ? event.icon : 'ticket'}
+        name={activity.icon ? activity.icon : 'ticket'}
         size={32}
         color='black'
         style={styles.icon}
       />
       <View style={{flex: 1}}>
-        <Text style={styles.h2}>{event.name}</Text>
-        <Text style={styles.p}>{event.location}</Text>
+        <Text style={styles.h2}>{activity.title}</Text>
+        <Text style={styles.p}>{activity.location}</Text>
       </View>
       <FontAwesome
         name='chevron-right'

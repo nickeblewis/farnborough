@@ -10,14 +10,14 @@ import {
   Dimensions,
 } from 'react-native'
 
-export default class EventDetails extends React.Component {
+
+export default class PlaceDetails extends React.Component {
   state = {
     isLoading: true,
     dataSource: []
   }
-
   componentDidMount() {
-    Image.getSize(this.props.navigation.state.params.event.imageUrl, (width, height) => {
+    Image.getSize(this.props.navigation.state.params.place.banner, (width, height) => {
       
             const screenWidth = Dimensions.get('window').width
       
@@ -47,13 +47,13 @@ export default class EventDetails extends React.Component {
     } else {
       console.log(this.props.navigation.state.params.event)
       const {width, height} = this.state
-      const { name, imageUrl, description } = this.props.navigation.state.params.event;
+      const { title, banner, description } = this.props.navigation.state.params.place;
       return (
         <ScrollView>
           {/* <Text>Event {name} details go here</Text> */}
           <Image
               resizeMode="contain"
-              source={{uri: imageUrl}}
+              source={{uri: banner}}
               style={{ width: width, height: height }}
             />
             <Text style={ styles.description }>{description}</Text>

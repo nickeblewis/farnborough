@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "YABA",
+    "name": "Farnborugh Guide",
     "description": "Demo chat app with crazy react-navigation, Apollo+Graph.cool, a smidge of Redux for no real reason, and login/signup/profile. github.com/allpwrfulroot/yaba-social",
     "slug": "yaba-social",
     "privacy": "public",
-    "sdkVersion": "18.0.0",
+    "sdkVersion": "21.0.0",
     "version": "0.0.1",
     "orientation": "portrait",
     "primaryColor": "#cccccc",
