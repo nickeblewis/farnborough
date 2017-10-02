@@ -14,11 +14,19 @@ import EventListItem from './components/EventListItem'
 
 const allEventsQuery = gql`
   query {
-      allEvents {
+      allEvents(orderBy: eventDate_DESC) {
           id
           name
           imageUrl
           description
+          eventDate
+          contactName
+          contactEmail
+          cost
+          eventVenue {
+            title
+            address
+          }
       }
   }
   `
@@ -63,7 +71,7 @@ class EventsPage extends React.Component {
   } else {
     return (
       this.state.dataSource !== null ?
-        <View style={{flex: 1, backgroundColor: 'darkgray'}}>
+        <View style={{flex: 1, backgroundColor: 'white'}}>
           <ListView
             dataSource={this.state.dataSource}
             removeClippedSubviews={false}

@@ -47,16 +47,29 @@ export default class EventDetails extends React.Component {
     } else {
       console.log(this.props.navigation.state.params.event)
       const {width, height} = this.state
-      const { name, imageUrl, description } = this.props.navigation.state.params.event;
+      const { name, imageUrl, description, eventVenue, eventDate, contactName, contactEmail, cost } = this.props.navigation.state.params.event;
       return (
-        <ScrollView>
+        <ScrollView style={ styles.container }>
           {/* <Text>Event {name} details go here</Text> */}
           <Image
               resizeMode="contain"
               source={{uri: imageUrl}}
               style={{ width: width, height: height }}
             />
+            <Text style= { styles.headline }>{name}</Text>
             <Text style={ styles.description }>{description}</Text>
+            <Text style= { styles.headline }>Where?</Text>
+            <Text style={ styles.venueDetailTitle }>{eventVenue.title}</Text>
+            <Text style={ styles.venueDetailAddress }>{eventVenue.address}</Text>
+            <Text style={ styles.headline }>When?</Text>
+            <Text style={ styles.venueDetailTitle }>{eventDate}</Text>
+
+            <Text style={ styles.headline }>Who to contact?</Text>
+            <Text style={ styles.venueDetailTitle }>{contactName}</Text>
+            <Text style={ styles.venueDetailAddress }>{contactEmail}</Text>
+            <Text style={ styles.headline }>Cost</Text>
+            <Text style={ styles.venueDetailTitle }>{cost}</Text>
+            
         </ScrollView>
       )
     }
@@ -68,10 +81,34 @@ export default class EventDetails extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff'
+  },
   bannerImage: {
     padding: 12,
   },
+  headline: {
+      fontSize: 24,
+      color: '#ff0000',
+      alignItems: 'center',
+      padding: 20,
+  },
+  venueDetailTitle: {
+      fontSize: 18,
+      color: '#000000',
+      alignItems: 'center',
+      paddingLeft: 20
+  },
+  venueDetailAddress: {
+      fontSize: 14,
+      color: '#000',
+      alignItems: 'center',
+      paddingLeft: 20
+  },
   description: {
-    fontSize: 20
+    fontSize: 18,
+    backgroundColor: '#fff',
+    padding: 20
   }
 })

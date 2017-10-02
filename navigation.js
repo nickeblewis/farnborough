@@ -510,7 +510,7 @@ const MainNavigation = StackNavigator({
     screen: DrawerNavigation
   }
 },{
-  initialRouteName: 'Login',
+  initialRouteName: 'App',
   mode: 'card',
   headerMode: 'none',
 })

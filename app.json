@@ -17,7 +17,8 @@
       "assetExts": ["otf", "ttf", "mp4"]
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.headforcode.farnborough"
     }
   }
 }
