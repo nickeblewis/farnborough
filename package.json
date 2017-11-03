@@ -7,7 +7,10 @@
   "main": "node_modules/expo/AppEntry.js",
   "dependencies": {
     "apollo-client": "^1.9.0-0",
+    "cloudinary-react": "^1.0.4",
     "expo": "^21.0.0",
+    "moment": "^2.19.1",
+    "moment-es6": "^1.0.0",
     "prop-types": "^15.5.10",
     "react": "16.0.0-alpha.12",
     "react-apollo": "^1.4.3",
