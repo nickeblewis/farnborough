@@ -14,10 +14,9 @@ import EventListItem from './components/EventListItem'
 
 const allEventsQuery = gql`
   query {
-      allEvents(orderBy: eventDate_DESC) {
+      allEvents(orderBy: eventDate_ASC) {
           id
           name
-          imageUrl
           description
           eventDate
           contactName
