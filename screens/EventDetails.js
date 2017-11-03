@@ -9,6 +9,7 @@ import {
   Image,
   Dimensions,
 } from 'react-native'
+import moment  from 'moment-es6'
 
 export default class EventDetails extends React.Component {
   state = {
@@ -34,7 +35,6 @@ export default class EventDetails extends React.Component {
   }
 
   render() {
-    
     if(this.state.isLoading) {
       return (
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
@@ -48,6 +48,11 @@ export default class EventDetails extends React.Component {
       console.log(this.props.navigation.state.params.event)
       const {width, height} = this.state
       const { name, imageUrl, description, eventVenue, eventDate, contactName, contactEmail, cost } = this.props.navigation.state.params.event;
+
+      // var localTime = moment => () => format('YYYY-MM-DD')
+      // var showDate = localTime + eventDate
+      // var momentDate = moment(showDate)
+      // const showDsate = new Date(eventDate)
       return (
         <ScrollView style={ styles.container }>
           {/* <Text>Event {name} details go here</Text> */}
@@ -62,7 +67,7 @@ export default class EventDetails extends React.Component {
             <Text style={ styles.venueDetailTitle }>{eventVenue.title}</Text>
             <Text style={ styles.venueDetailAddress }>{eventVenue.address}</Text>
             <Text style={ styles.headline }>When?</Text>
-            <Text style={ styles.venueDetailTitle }>{eventDate}</Text>
+            <Text style={ styles.venueDetailTitle }>{moment(eventDate).format("DD MMM h:mm a")}</Text>
 
             <Text style={ styles.headline }>Who to contact?</Text>
             <Text style={ styles.venueDetailTitle }>{contactName}</Text>

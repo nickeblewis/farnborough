@@ -12,6 +12,8 @@ import {
 
 import EventListItem from './components/EventListItem'
 
+import moment  from 'moment-es6'
+
 const allEventsQuery = gql`
   query {
       allEvents(orderBy: eventDate_ASC) {
@@ -22,6 +24,7 @@ const allEventsQuery = gql`
           contactName
           contactEmail
           cost
+          publicId
           eventVenue {
             title
             address

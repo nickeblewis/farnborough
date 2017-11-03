@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
 } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
+import moment  from 'moment-es6'
 
 export default function EventListItem({ event, goToEvent }) {
   console.log('ELI', event)
@@ -17,6 +18,7 @@ export default function EventListItem({ event, goToEvent }) {
     <TouchableOpacity
       style={styles.card}
       onPress={() => goToEvent(event)}>
+      
       <FontAwesome
         name={event.icon ? event.icon : 'ticket'}
         size={32}
@@ -25,7 +27,9 @@ export default function EventListItem({ event, goToEvent }) {
       />
       <View style={{flex: 1}}>
         <Text style={styles.h2}>{event.name}</Text>
-        <Text style={styles.p}>{event.location}</Text>
+        {/* <Text style={styles.intro}>{event.description}</Text> */}
+        {/* {<Text style={styles.p}>{event.eventVenue.title}</Text>} */}
+        <Text style={styles.p}>{moment(event.eventDate).format("DD MMM h:mm a")}</Text>
       </View>
       <FontAwesome
         name='chevron-right'
@@ -57,6 +61,13 @@ const styles = StyleSheet.create({
     paddingBottom: 12
   },
   p: {
+    fontWeight: "400",
+    fontSize: 12,
+    color: '#2B2B2B',
+    margin: 4,
+    paddingBottom: 4
+  },
+  intro: {
     fontWeight: "300",
     fontSize: 18,
     color: '#2B2B2B',
